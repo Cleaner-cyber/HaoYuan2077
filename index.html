@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>浩源｜00后创新教育创业者 & 数字内容专家</title>
+  <meta name="description" content="浩源｜内容创作与账号冷启动、私域运营与高转化直播、教育产品设计与交付、AI应用与生态搭建。" />
+  <style>
+    :root{
+      --bg:#0b0c10; --card:#11131a; --text:#e8ecf1; --muted:#a6b0bf; --brand:#6aa6ff; --brand2:#a879ff; --line:#222533;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --shadow-hover:0 20px 40px rgba(0,0,0,.5);
+      --radius:18px;
+      --gradient-primary:linear-gradient(135deg, var(--brand), var(--brand2));
+      --gradient-bg:linear-gradient(135deg, #0b0c10 0%, #1a1d2e 100%);
+    }
+    @media (prefers-color-scheme: light){
+      :root{ 
+        --bg:#f7f8fb; --card:#ffffff; --text:#0e1220; --muted:#5a6577; 
+        --brand:#2a66ff; --brand2:#7a41ff; --line:#e8ebf3; 
+        --shadow:0 10px 24px rgba(28,45,86,.08); 
+        --shadow-hover:0 20px 40px rgba(28,45,86,.15);
+        --gradient-bg:linear-gradient(135deg, #f7f8fb 0%, #e8ebf3 100%);
+      }
+    }
+    [data-theme="light"]{ 
+      --bg:#f7f8fb; --card:#ffffff; --text:#0e1220; --muted:#5a6577; 
+      --brand:#2a66ff; --brand2:#7a41ff; --line:#e8ebf3; 
+      --shadow:0 10px 24px rgba(28,45,86,.08); 
+      --shadow-hover:0 20px 40px rgba(28,45,86,.15);
+      --gradient-bg:linear-gradient(135deg, #f7f8fb 0%, #e8ebf3 100%);
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--gradient-bg);color:var(--text);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
+    
+    /* 添加平滑过渡动画 */
+    * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    
+    /* 添加滚动条样式 */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--line); }
+    ::-webkit-scrollbar-thumb { background: var(--brand); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--brand2); }
+    .nav{
+      position:sticky;top:0;z-index:20;
+      backdrop-filter:saturate(160%) blur(20px);
+      background:linear-gradient(180deg, rgba(10,12,16,.9), rgba(10,12,16,.7));
+      border-bottom:1px solid var(--line);
+      box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    }
+    .nav.light{background:linear-gradient(180deg, rgba(247,248,251,.95), rgba(247,248,251,.85))}
+    .nav .inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 20px}
+    .logo{font-weight:800;letter-spacing:.2px;background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;}
+    .spacer{flex:1}
+    .tabs{display:flex;gap:14px;flex-wrap:wrap}
+    .tab{padding:8px 16px;border:1px solid var(--line);border-radius:999px;font-size:14px;opacity:.8;position:relative;overflow:hidden}
+    .tab:hover{opacity:1;transform:translateY(-2px);box-shadow:0 8px 25px rgba(106,166,255,.15)}
+    .tab::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gradient-primary);opacity:0.1;transition:left 0.3s ease}
+    .tab:hover::before{left:0}
+    .btn{padding:10px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);font-size:14px;position:relative;overflow:hidden}
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+    .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gradient-primary);opacity:0.1;transition:left 0.3s ease}
+    .btn:hover::before{left:0}
+    .toggle{cursor:pointer;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px}
+    .toggle:hover{transform:rotate(180deg) scale(1.1)}
+    
+    /* 移动端汉堡菜单 */
+    .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px}
+    .hamburger span{width:20px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s ease}
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}
+    
+    @media (max-width:768px){
+      .tabs{display:none;position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--line);border-radius:0 0 16px 16px;flex-direction:column;padding:16px;box-shadow:var(--shadow)}
+      .tabs.active{display:flex}
+      .hamburger{display:flex}
+      .nav .inner{padding:12px 16px}
+    }
+    .hero{
+      display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin-top:26px
+    }
+    @media (max-width:860px){ .hero{grid-template-columns:1fr;gap:18px} }
+
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+    .hero .left{padding:32px;position:relative;overflow:hidden}
+    .grad{
+      position:absolute;inset:-20%;background:
+        radial-gradient(800px 300px at 20% -10%, rgba(106,166,255,.25), transparent 60%),
+        radial-gradient(800px 300px at 110% 120%, rgba(168,121,255,.20), transparent 60%);
+      pointer-events:none;animation: float 6s ease-in-out infinite
+    }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(10px, -10px) rotate(1deg); }
+    }
+    h1{margin:0 0 8px;font-size:36px;letter-spacing:.2px;background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: slideInUp 0.8s ease-out}
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .subtitle{color:var(--muted);margin-bottom:20px;font-size:18px;animation: slideInUp 0.8s ease-out 0.2s both}
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
+    .chip{font-size:13px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));position:relative;overflow:hidden;animation: slideInUp 0.8s ease-out calc(var(--i) * 0.1s) both}
+    .chip::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gradient-primary);opacity:0.1;transition:left 0.3s ease}
+    .chip:hover::before{left:0}
+    .chip:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(106,166,255,.15)}
+    .cta{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .cta .primary{background:var(--gradient-primary);color:#fff;border:none;position:relative;overflow:hidden;animation: slideInUp 0.8s ease-out 0.4s both}
+    .cta .primary::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left 0.5s ease}
+    .cta .primary:hover::before{left:100%}
+    .cta .primary:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(106,166,255,.4)}
+    .photo{
+      aspect-ratio:1 / 1;border-radius:24px;overflow:hidden;border:2px solid var(--line);position:relative;animation: slideInRight 0.8s ease-out 0.6s both
+    }
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .photo::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:var(--gradient-primary);opacity:0;transition:opacity 0.3s ease;z-index:1}
+    .photo:hover::before{opacity:0.1}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
+    .photo:hover img{transform:scale(1.05)}
+
+    .section{margin-top:40px;position:relative}
+    .section h2{font-size:28px;margin:0 0 20px;background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; position:relative; padding-left:20px}
+    .section h2::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:24px;background:var(--gradient-primary);border-radius:2px}
+    .grid{display:grid;gap:20px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:960px){ .grid.cols-3{grid-template-columns:1fr 1fr} }
+    @media (max-width:680px){ .grid.cols-2,.grid.cols-3{grid-template-columns:1fr} }
+
+    .ability{padding:24px;position:relative;overflow:hidden}
+    .ability::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient-primary);transform:scaleX(0);transition:transform 0.3s ease}
+    .ability:hover::before{transform:scaleX(1)}
+    .ability h3{margin:0 0 8px;font-size:18px;color:var(--text)}
+    .ability p{margin:8px 0;color:var(--muted);line-height:1.6}
+    .list{margin:12px 0 0;padding-left:20px}
+    .list li{margin:8px 0;position:relative}
+    .list li::before{content:'▶';color:var(--brand);font-size:10px;position:absolute;left:-16px;top:2px}
+
+    .timeline{position:relative;padding-left:24px}
+    .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:3px;background:var(--gradient-primary);border-radius:2px}
+    .year{position:relative;margin:24px 0;padding-left:20px;padding:20px;background:var(--card);border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);transition:all 0.3s ease}
+    .year:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+    .year::before{content:"";position:absolute;left:-16px;top:24px;width:12px;height:12px;border-radius:50%;background:var(--gradient-primary);box-shadow:0 0 0 4px var(--bg), 0 0 20px rgba(106,166,255,.3)}
+    .year h3{margin:0 0 8px;font-size:20px;color:var(--text)}
+    .year ul{margin:8px 0 0;padding-left:0}
+    .year li{margin:8px 0;position:relative;padding-left:16px}
+    .year li::before{content:'•';color:var(--brand);font-size:16px;position:absolute;left:0;top:0}
+
+    .accounts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media (max-width:720px){ .accounts{grid-template-columns:1fr} }
+    figure{margin:0;transition:transform 0.3s ease}
+    figure:hover{transform:translateY(-5px)}
+    .shot{aspect-ratio:3/5;border-radius:20px;overflow:hidden;border:2px solid var(--line);background:#000;position:relative}
+    .shot::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:var(--gradient-primary);opacity:0;transition:opacity 0.3s ease;z-index:1}
+    .shot:hover::before{opacity:0.1}
+    .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
+    .shot:hover img{transform:scale(1.05)}
+    figcaption{font-size:14px;color:var(--muted);margin-top:12px;text-align:center;font-weight:500}
+
+    details{border:1px solid var(--line);border-radius:16px;padding:16px 20px;background:var(--card);box-shadow:var(--shadow);transition:all 0.3s ease;position:relative;overflow:hidden}
+    details:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+    details+details{margin-top:16px}
+    summary{cursor:pointer;font-weight:600;font-size:16px;color:var(--text);position:relative;padding-left:24px}
+    summary::before{content:'▶';position:absolute;left:0;top:0;color:var(--brand);transition:transform 0.3s ease}
+    details[open] summary::before{transform:rotate(90deg)}
+    .persona{padding:16px 0 0 0;color:var(--muted)}
+    .persona ul{margin:8px 0 0 20px}
+    .persona li{margin:10px 0;line-height:1.6;position:relative}
+    .persona li::before{content:'•';color:var(--brand);font-size:16px;position:absolute;left:-16px;top:0}
+
+    .footer{margin-top:60px;color:var(--muted);text-align:center;font-size:14px;padding:20px;border-top:1px solid var(--line);background:var(--card);border-radius:16px 16px 0 0;position:relative}
+    .footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:3px;background:var(--gradient-primary);border-radius:2px}
+    .anchor{scroll-margin-top:100px}
+    
+    /* 移动端优化 */
+    @media (max-width:768px){
+      .wrap{padding:20px 16px 60px}
+      h1{font-size:28px}
+      .subtitle{font-size:16px}
+      .section h2{font-size:24px;padding-left:16px}
+      .section h2::before{width:3px;height:20px}
+      .hero .left{padding:24px}
+      .ability{padding:20px}
+      .year{padding:16px}
+      .timeline{padding-left:20px}
+      .timeline::before{left:6px;width:2px}
+      .year::before{left:-12px;width:10px;height:10px}
+      .cta{flex-direction:column;gap:12px}
+      .cta .btn{width:100%;text-align:center}
+    }
+    
+    @media (max-width:480px){
+      .wrap{padding:16px 12px 40px}
+      h1{font-size:24px}
+      .subtitle{font-size:14px}
+      .section h2{font-size:20px}
+      .hero .left{padding:20px}
+      .ability{padding:16px}
+      .year{padding:12px}
+      .chips{gap:8px}
+      .chip{font-size:12px;padding:6px 12px}
+    }
+    
+    /* 加载动画 */
+    .loading{opacity:0;transform:translateY(20px)}
+    .loaded{opacity:1;transform:translateY(0)}
+    
+    /* 滚动指示器 */
+    .scroll-indicator{position:fixed;top:0;left:0;width:0;height:3px;background:var(--gradient-primary);z-index:1000;transition:width 0.3s ease}
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+  <nav class="nav" id="nav">
+    <div class="inner">
+      <div class="logo">HY • Portfolio</div>
+      <div class="spacer"></div>
+      <div class="tabs" id="tabs">
+        <a class="tab" href="#about">关于我</a>
+        <a class="tab" href="#tags">个人标签</a>
+        <a class="tab" href="#abilities">核心能力</a>
+        <a class="tab" href="#results">关键成果</a>
+        <a class="tab" href="#personas">咨询方向</a>
+        <a class="tab" href="#accounts">社交账号</a>
+      </div>
+      <button class="btn toggle" id="themeBtn" aria-label="切换主题">🌗</button>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <!-- Hero -->
+    <section class="hero anchor" id="about">
+      <div class="left card">
+        <div class="grad" aria-hidden="true"></div>
+        <h1>浩源｜00后创新教育创业者 & 数字内容专家</h1>
+        <div class="subtitle">内容增长 × 私域转化 × 课程产品 × AI工作流</div>
+        <div class="chips">
+          <span class="chip">东北大学数学系在读</span>
+          <span class="chip">全网40w+粉丝知识博主</span>
+          <span class="chip">青年商会副会长</span>
+          <span class="chip">微软认证AI训练师</span>
+          <span class="chip">浪尖儿大学社区创始人</span>
+          <span class="chip">私域运营与变现专家</span>
+        </div>
+        <div class="cta">
+          <a class="btn primary" href="#personas">了解可合作方向</a>
+          <a class="btn" href="#accounts">查看账号主页</a>
+        </div>
+      </div>
+      <aside class="photo card" aria-label="个人照片">
+        <img src="photo.jpg" alt="浩源个人照片" loading="eager" />
+      </aside>
+    </section>
+
+    <!-- Tags -->
+    <section class="section anchor" id="tags">
+      <h2>📊 个人标签</h2>
+      <div class="card" style="padding:18px">
+        <ul class="list">
+          <li>东北大学数学系在读｜全网40w+粉丝知识博主</li>
+          <li>青年商会副会长｜微软认证 AI 训练师</li>
+          <li>浪尖儿大学社区创始人｜私域运营与变现专家</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Abilities -->
+    <section class="section anchor" id="abilities">
+      <h2>🎯 核心能力分布</h2>
+      <div class="grid cols-2">
+        <div class="ability card">
+          <h3>1) 内容创作与账号冷启动</h3>
+          <p>一个人一台手机：口播自媒体｜知识类账号｜访谈类 IP</p>
+          <ul class="list">
+            <li>抖音 6 个月涨粉 23w+；小红书 4 个月涨粉 6.8w</li>
+          </ul>
+        </div>
+        <div class="ability card">
+          <h3>2) 私域运营与高转化直播</h3>
+          <p>私域策略与转化漏斗设计，直播节奏与话术体系</p>
+          <ul class="list">
+            <li>私域用户 4w+｜24 年变现 103w，25 年预估 480w+</li>
+            <li>单场私域直播 GMV 20w+｜订阅续费率 70%</li>
+          </ul>
+        </div>
+        <div class="ability card">
+          <h3>3) 教育产品设计与交付</h3>
+          <p>考研/雅思/四六级/AI/技能类课程体系与运营</p>
+          <ul class="list">
+            <li>投流 ROI 14:1</li>
+          </ul>
+        </div>
+        <div class="ability card">
+          <h3>4) AI 应用与生态搭建</h3>
+          <p>大模型训练与智能体工作流设计，提效与增长闭环</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section anchor" id="results">
+      <h2>📅 关键成果</h2>
+      <div class="card" style="padding:18px">
+        <div class="timeline">
+          <div class="year">
+            <h3>2023 年</h3>
+            <ul>
+              <li>创立流量赋能公司，为教培机构运营 B 站账号 → 3 个月涨粉 3w，月均变现 20w</li>
+              <li>主导考研/雅思/四六级课程销售，投流 ROI 14:1</li>
+            </ul>
+          </div>
+          <div class="year">
+            <h3>2024 年</h3>
+            <ul>
+              <li>启动个人 IP，抖音 17 条视频涨粉 12w</li>
+              <li>私域积累 1w+ 付费用户，年变现 103w</li>
+              <li>私域直播 200+ 场，月均变现 40w+</li>
+            </ul>
+          </div>
+          <div class="year">
+            <h3>2025 年</h3>
+            <ul>
+              <li>创立「浪尖儿大学社区」，聚合清北复交等高校尖子生</li>
+              <li>覆盖竞赛、考研、AI、自媒体等 10+ 类实战课程</li>
+              <li>付费用户 4700+，私域用户 3w+，6–9 月整体 GMV：119w</li>
+              <li>抖音 33.9w 粉丝｜小红书 6.8w 粉丝</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personas -->
+    <section class="section anchor" id="personas">
+      <h2>🧭 咨询方向与典型需求</h2>
+      <details open>
+        <summary>第一类：创业与业务增长类</summary>
+        <div class="persona">
+          <ul>
+            <li><b>知识付费初创者：</b>冷启动策略、产品结构、私域搭建、变现闭环（如：如何定义种子用户、提升续费率）。</li>
+            <li><b>教培机构/传统企业转型：</b>短视频引流、私域转型、教育产品直播带货（如：打造可变现的抖音号、线下客户导入与复购）。</li>
+            <li><b>项目方合作：</b>联名推广/渠道分销，触达大学生群体。</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>第二类：内容与流量类</summary>
+        <div class="persona">
+          <ul>
+            <li><b>知识类博主：</b>定位优化、爆款方法、从公域引流至私域与变现设计。</li>
+            <li><b>直播从业者：</b>私域直播流程、节奏与话术，打造 GMV 20w+ 专场。</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>第三类：私域与运营类</summary>
+        <div class="persona">
+          <ul>
+            <li><b>私域操盘手/运营负责人：</b>用户分层、留存与复购体系，支撑 70% 续费率。</li>
+            <li><b>用户增长专员：</b>内容驱动的低成本增长，企业微信私域积累路径与引流品转化。</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>第四类：个人发展与学习类</summary>
+        <div class="persona">
+          <ul>
+            <li><b>大学生创业者：</b>一人公司打法、低成本试错、学业与事业平衡。</li>
+            <li><b>AI 应用学习者：</b>AI 入门路径、智能体工作流、提示词工程进阶。</li>
+          </ul>
+        </div>
+      </details>
+    </section>
+
+    <!-- Accounts -->
+    <section class="section anchor" id="accounts">
+      <h2>📱 社交账号主页</h2>
+      <div class="accounts">
+        <figure class="card" style="padding:14px">
+          <div class="shot"><img src="account1.jpg" alt="抖音号主页截图" loading="lazy"></div>
+          <figcaption>抖音号主页（示意截图）</figcaption>
+        </figure>
+        <figure class="card" style="padding:14px">
+          <div class="shot"><img src="account2.jpg" alt="小红书号主页截图" loading="lazy" onerror="this.alt='找不到 account2.jpg，请检查文件名';"></div>
+          <figcaption>小红书号主页（示意截图）</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <footer class="footer">
+      © <span id="year"></span> 浪尖儿大学社区 · 浩源｜欢迎商务合作
+    </footer>
+  </main>
+
+  <script>
+    // 年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 主题切换 & 持久化
+    const root = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if(saved) root.setAttribute('data-theme', saved);
+    const themeBtn = document.getElementById('themeBtn');
+    themeBtn.addEventListener('click', () => {
+      const cur = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', cur);
+      localStorage.setItem('theme', cur);
+      // 顶部透明背景在浅色时稍作调整
+      document.getElementById('nav').classList.toggle('light', cur==='light');
+    });
+    // 初始同步导航样式
+    document.getElementById('nav').classList.toggle('light', (saved||'dark')==='light');
+
+    // 汉堡菜单功能
+    const hamburger = document.getElementById('hamburger');
+    const tabs = document.getElementById('tabs');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      tabs.classList.toggle('active');
+    });
+
+    // 点击标签后关闭移动端菜单
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        tabs.classList.remove('active');
+      });
+    });
+
+    // 滚动指示器
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      scrollIndicator.style.width = scrollPercent + '%';
+    });
+
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){
+          e.preventDefault();
+          el.scrollIntoView({behavior:'smooth',block:'start'});
+          history.pushState(null,'','#'+id);
+        }
+      });
+    });
+
+    // 添加加载动画
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+
+    // 数字动画效果
+    function animateNumbers() {
+      const numbers = document.querySelectorAll('[data-number]');
+      numbers.forEach(num => {
+        const target = parseInt(num.getAttribute('data-number'));
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          num.textContent = Math.floor(current).toLocaleString();
+        }, 16);
+      });
+    }
+
+    // 当滚动到数字元素时触发动画
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateNumbers();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // 观察包含数字的元素
+    const numberElements = document.querySelectorAll('.timeline');
+    if (numberElements.length > 0) {
+      observer.observe(numberElements[0]);
+    }
+  </script>
+</body>
+</html>
