@@ -6,10 +6,10 @@
   <title>浩源｜00后创新教育创业者 & 数字内容专家</title>
   <meta name="description" content="浩源｜内容创作与账号冷启动、私域运营与高转化直播、教育产品设计与交付、AI应用与生态搭建。" />
 
-  <!-- 预加载首屏大图（如无 .avif/.webp 会回退到 jpg） -->
+  <!-- 预加载首屏头像（同级目录） -->
   <link rel="preload" as="image"
-        href="photo.jpg"
-        imagesrcset="photo.avif 1200w, photo.webp 1200w, photo.jpg 1200w"
+        href="./photo.jpg"
+        imagesrcset="./photo.jpg 1200w"
         imagesizes="(max-width:860px) 100vw, 50vw">
 
   <style>
@@ -43,11 +43,13 @@
     a{color:inherit;text-decoration:none}
     .wrap{max-width:1100px;margin:0 auto;padding:24px 20px 80px}
     
+    /* 过渡与滚动条 */
     * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--line); }
     ::-webkit-scrollbar-thumb { background: var(--brand); border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--brand2); }
+
     .nav{
       position:sticky;top:0;z-index:20;
       backdrop-filter:saturate(160%) blur(20px);
@@ -71,6 +73,7 @@
     .toggle{cursor:pointer;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:18px}
     .toggle:hover{transform:rotate(180deg) scale(1.1)}
     
+    /* 移动端汉堡菜单 */
     .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px}
     .hamburger span{width:20px;height:2px;background:var(--text);border-radius:2px;transition:all 0.3s ease}
     .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
@@ -83,6 +86,7 @@
       .hamburger{display:flex}
       .nav .inner{padding:12px 16px}
     }
+
     .hero{
       display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center;margin-top:26px
     }
@@ -97,9 +101,9 @@
         radial-gradient(800px 300px at 110% 120%, rgba(168,121,255,.20), transparent 60%);
       pointer-events:none;animation: float 6s ease-in-out infinite
     }
-    @keyframes float { 0%,100%{transform:translate(0,0) rotate(0deg)} 50%{transform:translate(10px,-10px) rotate(1deg)} }
+    @keyframes float { 0%, 100% { transform: translate(0, 0) rotate(0deg); } 50% { transform: translate(10px, -10px) rotate(1deg); } }
     h1{margin:0 0 8px;font-size:36px;letter-spacing:.2px;background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: slideInUp 0.8s ease-out}
-    @keyframes slideInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     .subtitle{color:var(--muted);margin-bottom:20px;font-size:18px;animation: slideInUp 0.8s ease-out 0.2s both}
     .chips{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 8px}
     .chip{font-size:13px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));position:relative;overflow:hidden;animation: slideInUp 0.8s ease-out calc(var(--i) * 0.1s) both}
@@ -111,11 +115,14 @@
     .cta .primary::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left 0.5s ease}
     .cta .primary:hover::before{left:100%}
     .cta .primary:hover{transform:translateY(-3px);box-shadow:0 15px 35px rgba(106,166,255,.4)}
-    .photo{ aspect-ratio:1 / 1;border-radius:24px;overflow:hidden;border:2px solid var(--line);position:relative;animation: slideInRight 0.8s ease-out 0.6s both }
-    @keyframes slideInRight { from{opacity:0;transform:translateX(50px)} to{opacity:1;transform:translateX(0)} }
-    .photo::before{content:'';position:absolute;inset:0;background:var(--gradient-primary);opacity:0;transition:opacity .3s ease;z-index:1}
-    .photo:hover::before{opacity:.1}
-    .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+
+    .photo{
+      aspect-ratio:1 / 1;border-radius:24px;overflow:hidden;border:2px solid var(--line);position:relative;animation: slideInRight 0.8s ease-out 0.6s both
+    }
+    @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+    .photo::before{content:'';position:absolute;inset:0;background:var(--gradient-primary);opacity:0;transition:opacity 0.3s ease;z-index:1}
+    .photo:hover::before{opacity:0.1}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
     .photo:hover img{transform:scale(1.05)}
 
     .section{margin-top:40px;position:relative}
@@ -128,7 +135,7 @@
     @media (max-width:680px){ .grid.cols-2,.grid.cols-3{grid-template-columns:1fr} }
 
     .ability{padding:24px;position:relative;overflow:hidden}
-    .ability::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient-primary);transform:scaleX(0);transition:transform .3s ease}
+    .ability::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient-primary);transform:scaleX(0);transition:transform 0.3s ease}
     .ability:hover::before{transform:scaleX(1)}
     .ability h3{margin:0 0 8px;font-size:18px;color:var(--text)}
     .ability p{margin:8px 0;color:var(--muted);line-height:1.6}
@@ -138,7 +145,7 @@
 
     .timeline{position:relative;padding-left:24px}
     .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:3px;background:var(--gradient-primary);border-radius:2px}
-    .year{position:relative;margin:24px 0;padding:20px;background:var(--card);border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);transition:all .3s ease}
+    .year{position:relative;margin:24px 0;padding-left:20px;padding:20px;background:var(--card);border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);transition:all 0.3s ease}
     .year:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
     .year::before{content:"";position:absolute;left:-16px;top:24px;width:12px;height:12px;border-radius:50%;background:var(--gradient-primary);box-shadow:0 0 0 4px var(--bg), 0 0 20px rgba(106,166,255,.3)}
     .year h3{margin:0 0 8px;font-size:20px;color:var(--text)}
@@ -148,20 +155,20 @@
 
     .accounts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
     @media (max-width:720px){ .accounts{grid-template-columns:1fr} }
-    figure{margin:0;transition:transform .3s ease}
+    figure{margin:0;transition:transform 0.3s ease}
     figure:hover{transform:translateY(-5px)}
     .shot{aspect-ratio:3/5;border-radius:20px;overflow:hidden;border:2px solid var(--line);background:#000;position:relative}
-    .shot::before{content:'';position:absolute;inset:0;background:var(--gradient-primary);opacity:0;transition:opacity .3s ease;z-index:1}
-    .shot:hover::before{opacity:.1}
-    .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+    .shot::before{content:'';position:absolute;inset:0;background:var(--gradient-primary);opacity:0;transition:opacity 0.3s ease;z-index:1}
+    .shot:hover::before{opacity:0.1}
+    .shot img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s ease}
     .shot:hover img{transform:scale(1.05)}
     figcaption{font-size:14px;color:var(--muted);margin-top:12px;text-align:center;font-weight:500}
 
-    details{border:1px solid var(--line);border-radius:16px;padding:16px 20px;background:var(--card);box-shadow:var(--shadow);transition:all .3s ease;position:relative;overflow:hidden}
+    details{border:1px solid var(--line);border-radius:16px;padding:16px 20px;background:var(--card);box-shadow:var(--shadow);transition:all 0.3s ease;position:relative;overflow:hidden}
     details:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
     details+details{margin-top:16px}
     summary{cursor:pointer;font-weight:600;font-size:16px;color:var(--text);position:relative;padding-left:24px}
-    summary::before{content:'▶';position:absolute;left:0;top:0;color:var(--brand);transition:transform .3s ease}
+    summary::before{content:'▶';position:absolute;left:0;top:0;color:var(--brand);transition:transform 0.3s ease}
     details[open] summary::before{transform:rotate(90deg)}
     .persona{padding:16px 0 0 0;color:var(--muted)}
     .persona ul{margin:8px 0 0 20px}
@@ -172,6 +179,7 @@
     .footer::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:60px;height:3px;background:var(--gradient-primary);border-radius:2px}
     .anchor{scroll-margin-top:100px}
     
+    /* 移动端优化 */
     @media (max-width:768px){
       .wrap{padding:20px 16px 60px}
       h1{font-size:28px}
@@ -199,9 +207,10 @@
       .chip{font-size:12px;padding:6px 12px}
     }
 
+    /* 加载动画与滚动条指示 */
     .loading{opacity:0;transform:translateY(20px)}
     .loaded{opacity:1;transform:translateY(0)}
-    .scroll-indicator{position:fixed;top:0;left:0;width:0;height:3px;background:var(--gradient-primary);z-index:1000;transition:width .3s ease}
+    .scroll-indicator{position:fixed;top:0;left:0;width:0;height:3px;background:var(--gradient-primary);z-index:1000;transition:width 0.3s ease}
   </style>
 </head>
 <body>
@@ -246,12 +255,10 @@
         </div>
       </div>
 
-      <!-- 改造：使用 <picture> + fetchpriority + 明确尺寸 -->
+      <!-- 右侧头像：本地同级路径 + 明确尺寸 + 高优先级 -->
       <aside class="photo card" aria-label="个人照片">
         <picture>
-          <source type="image/avif" srcset="photo.avif" />
-          <source type="image/webp" srcset="photo.webp" />
-          <img src="photo.jpg"
+          <img src="./photo.jpg"
                alt="浩源个人照片"
                width="800" height="800"
                loading="eager"
@@ -387,11 +394,8 @@
       <div class="accounts">
         <figure class="card" style="padding:14px">
           <div class="shot">
-            <!-- 改造：非首屏懒加载 + 多格式回退 + 明确尺寸（竖图 3:5） -->
             <picture>
-              <source type="image/avif" srcset="account1.avif" />
-              <source type="image/webp" srcset="account1.webp" />
-              <img src="account1.jpg"
+              <img src="./account1.jpg"
                    alt="抖音号主页截图"
                    width="900" height="1500"
                    loading="lazy"
@@ -405,9 +409,7 @@
         <figure class="card" style="padding:14px">
           <div class="shot">
             <picture>
-              <source type="image/avif" srcset="account2.avif" />
-              <source type="image/webp" srcset="account2.webp" />
-              <img src="account2.jpg"
+              <img src="./account2.jpg"
                    alt="小红书号主页截图"
                    width="900" height="1500"
                    loading="lazy"
@@ -479,12 +481,12 @@
       });
     });
 
-    // 加载动画
+    // 页面加载动画
     window.addEventListener('load', () => {
       document.body.classList.add('loaded');
     });
 
-    // 数字动画（保留）
+    // 数字动画
     function animateNumbers() {
       const numbers = document.querySelectorAll('[data-number]');
       numbers.forEach(num => {
